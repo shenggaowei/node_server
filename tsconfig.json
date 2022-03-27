@@ -1,0 +1,19 @@
+{
+  "compileOptions": {
+    "experimentalDecorators": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "allowJs": true,
+    "declaration": true,
+    "rootDir": "./src/",
+    "outDir": "./dist/",
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "compileOnSave": true,
+  "include": ["src/**/*"],
+  "exclude": ["node_module/**/*"]
+}
