@@ -1,8 +1,7 @@
 import * as Koa from "koa";
 import * as Router from "@koa/router";
 import * as logger from "koa-logger";
-import * as fs from "fs";
-import connect from "./config/db";
+import { getUser } from "./service/user";
 
 const app = new Koa();
 const router = new Router();
@@ -15,10 +14,8 @@ app.use(logger());
 app.use(router.routes()).use(router.allowedMethods());
 
 app.use(async (ctx: Koa.Context) => {
-  const ret = fs.readFileSync("./package.json", { encoding: "utf-8" });
+  const ret = await getUser();
   ctx.body = ret;
 });
-
-connect();
 
 app.listen(3000);

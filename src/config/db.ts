@@ -1,16 +1,14 @@
 import { Sequelize } from "@sequelize/core";
 
 const sequelize = new Sequelize("test", "test", "test", {
-  host: "",
   dialect: "mysql",
   port: 3306,
+  pool: {
+    max: 20,
+    min: 1,
+    acquire: 60000,
+    idle: 10000,
+  },
 });
 
-export default async function connect() {
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-}
+export default sequelize;
