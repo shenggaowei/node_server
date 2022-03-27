@@ -1,0 +1,17 @@
+- 用 koa 初始化项目
+  - 配置 ts
+  - 使用 esm 编写
+  - [nodemon 实时编译](https://github.com/remy/nodemon)
+  - [koa 路由配置](https://github.com/koajs/router/blob/master/API.md)
+  - [数据库连接 sequelize](https://github.com/sequelize/sequelize)
+- 功能配置
+  - [日志配置](https://github.com/koajs/logger)
+  - redis 缓存
+  - post bodyParser 解析
+- 上线配置
+  - nginx 配置 
+  - docker 部署
+  - https 证书配置
+- 功能
+  - 登陆注册实现
+  - 

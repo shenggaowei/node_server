@@ -1,7 +1,7 @@
 {
   "compileOptions": {
     "experimentalDecorators": true,
-    "target": "ESNext",
+    "target": "commonjs",
     "module": "ESNext",
     "allowJs": true,
     "declaration": true,
