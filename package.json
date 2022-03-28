@@ -7,7 +7,7 @@
     "start": "tsc --outDir ./dist && node dist/index.js",
     "watch": "nodemon --ext js,ts --exec npm start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --outDir ./dist"
+    "deploy": "tsc --outDir ./dist && pm2 start ./dist/index.js"
   },
   "keywords": [
     "server"
