@@ -1,6 +1,7 @@
 import { Sequelize } from "@sequelize/core";
 
-const sequelize = new Sequelize("test", "test", "test", {
+const sequelize = new Sequelize("test", "root", "shenggao", {
+  host: "8.131.101.166",
   dialect: "mysql",
   port: 3306,
   pool: {

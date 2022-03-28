@@ -8,6 +8,7 @@
   - [日志配置](https://github.com/koajs/logger)
   - redis 缓存
   - post bodyParser 解析
+  - 报错处理
 - 上线配置
   - nginx 配置 
   - docker 部署
