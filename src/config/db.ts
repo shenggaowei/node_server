@@ -12,4 +12,8 @@ const sequelize = new Sequelize("test", "root", "shenggao", {
   },
 });
 
+sequelize.sync({ force: true }).then(() => {
+  console.log("数据库同步成功");
+});
+
 export default sequelize;
