@@ -12,7 +12,7 @@ const sequelize = new Sequelize("test", "root", "shenggao", {
   },
 });
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ alter: true }).then(() => {
   console.log("数据库同步成功");
 });
 
