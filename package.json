@@ -5,11 +5,10 @@
   "main": "index.ts",
   "scripts": {
     "dev": "npm run build && node dist/index.js",
-    "build": "tsc --outDir ./dist",
     "start": "nodemon --ext js,ts --exec npm run dev",
     "sync": "npx ts-node ./src/script/sync.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "tsc --outDir ./dist && pm2 start ./dist/index.js"
+    "deploy": "tsc --outDir ./dist && pm2 restart index"
   },
   "keywords": [
     "server"
