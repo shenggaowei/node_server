@@ -4,7 +4,8 @@
   "description": "后台服务",
   "main": "index.ts",
   "scripts": {
-    "dev": "tsc --outDir ./dist && node dist/index.js",
+    "dev": "npm run build && node dist/index.js",
+    "build": "tsc --outDir ./dist",
     "start": "nodemon --ext js,ts --exec npm run dev",
     "sync": "npx ts-node ./src/script/sync.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
