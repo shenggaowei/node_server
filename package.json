@@ -4,8 +4,9 @@
   "description": "后台服务",
   "main": "index.ts",
   "scripts": {
-    "start": "tsc --outDir ./dist && node dist/index.js",
-    "watch": "nodemon --ext js,ts --exec npm start",
+    "dev": "tsc --outDir ./dist && node dist/index.js",
+    "start": "nodemon --ext js,ts --exec npm run dev",
+    "sync": "npx ts-node ./src/script/sync.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "tsc --outDir ./dist && pm2 start ./dist/index.js"
   },
@@ -27,6 +28,7 @@
     "@types/koa__router": "^8.0.11",
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.4.1",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   }
 }
