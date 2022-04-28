@@ -27,4 +27,6 @@ app.on("error", function (err) {
   }
 });
 
-app.listen(7001);
+app.listen(7001, () => {
+  console.log("项目在 7001 端口号");
+});

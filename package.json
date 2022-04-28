@@ -4,11 +4,12 @@
   "description": "后台服务",
   "main": "index.ts",
   "scripts": {
-    "dev": "npm run build && node dist/index.js",
     "start": "nodemon --ext js,ts --exec npm run dev",
+    "dev": "npm run build && node dist/index.js",
+    "build": "tsc --outDir ./dist",
     "sync": "npx ts-node ./src/script/sync.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "tsc --outDir ./dist && pm2 restart index"
+    "deploy": "npm run build  && pm2 restart index"
   },
   "keywords": [
     "server"
