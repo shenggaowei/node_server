@@ -4,6 +4,7 @@
   - [nodemon 实时编译](https://github.com/remy/nodemon) done
   - [koa 路由配置](https://github.com/koajs/router/blob/master/API.md) done
   - [数据库连接 sequelize](https://github.com/sequelize/sequelize) done
+  - src alias 路径映射
 - 功能配置
   - [日志配置](https://github.com/koajs/logger) done
   - redis 缓存
@@ -15,5 +16,6 @@
   - https 证书配置 done
   - 关键数据不可开源 done
 - 功能
-  - 登陆注册实现
-  - 
+  - 登陆注销功能 
+  - todo list 的增删改查
+ 

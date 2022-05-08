@@ -19,6 +19,7 @@
   "dependencies": {
     "@koa/router": "^10.1.1",
     "@sequelize/core": "^7.0.0-alpha.10",
+    "axios": "^0.27.2",
     "koa": "^2.13.4",
     "koa-logger": "^3.2.1",
     "mysql2": "^2.3.3"
