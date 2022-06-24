@@ -4,9 +4,8 @@
   "description": "后台服务",
   "main": "index.ts",
   "scripts": {
-    "prestart": "npm run build",
     "start": "nodemon --ext js,ts --exec npm run dev",
-    "dev": "node out/index.js",
+    "dev": "npm run build && node out/index.js",
     "build": "tsc",
     "sync": "npx ts-node ./src/script/sync.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,6 +21,7 @@
     "@sequelize/core": "^7.0.0-alpha.10",
     "axios": "^0.27.2",
     "koa": "^2.13.4",
+    "koa-body": "^5.0.0",
     "koa-logger": "^3.2.1",
     "mysql2": "^2.3.3"
   },

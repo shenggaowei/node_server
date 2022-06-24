@@ -1,5 +1,6 @@
 - 用 koa 初始化项目
   - 配置 ts done
+  - ts debug 调试
   - 使用 esm 编写 done
   - [nodemon 实时编译](https://github.com/remy/nodemon) done
   - [koa 路由配置](https://github.com/koajs/router/blob/master/API.md) done
