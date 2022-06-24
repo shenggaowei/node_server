@@ -1,20 +1,9 @@
 {
-  "compileOptions": {
-    "experimentalDecorators": true,
-    "target": "commonjs",
-    "module": "ESNext",
-    "allowJs": true,
-    "declaration": true,
-    "rootDir": "./src/",
-    "outDir": "./dist/",
-    "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "inlineSourceMap": true,
-    "forceConsistentCasingInFileNames": true,
-    "types": ["miniprogram-api-typings"]
-  },
-  "compileOnSave": true,
-  "include": ["src/**/*"],
-  "exclude": ["node_module/**/*"]
+  "compilerOptions": {
+      "outDir": "./out",
+      "rootDir": "./src",
+      "sourceMap": true,
+      "moduleResolution": "node",
+      "target": "es5"
+  }
 }

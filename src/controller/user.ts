@@ -7,7 +7,7 @@ interface ILoginQuery {
   code: string;
 }
 export const login = async (ctx: Koa.Context, next: Koa.Next) => {
-  const params: ILoginQuery = ctx.request.query;
+  const params = ctx.request.query as unknown as ILoginQuery;
   const data = await weixinService.getWexinSession({
     appid,
     secret: appsecret,
