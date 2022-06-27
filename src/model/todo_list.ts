@@ -1,7 +1,7 @@
 import sequelize from "../config/db";
 import { DataTypes } from "@sequelize/core";
 
-const TodoItem = sequelize.define(
+const Todo_List = sequelize.define(
   "todo_list",
   {
     content: {
@@ -10,10 +10,14 @@ const TodoItem = sequelize.define(
     description: {
       type: DataTypes.STRING,
     },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: '1'
+    }
   },
   {
     tableName: "todo_list",
   }
 );
 
-export default TodoItem;
+export default Todo_List;
