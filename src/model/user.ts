@@ -9,9 +9,12 @@ interface IUserModel {
   id: CreationOptional<number>;
   name: string;
   salt: string;
+  hash: string
 }
 
-const User  = sequelize.define<TModel<IUserModel>>(
+export type TUser = TModel<IUserModel>
+
+const User  = sequelize.define<TUser>(
   "user",
   {
     id: {
@@ -23,6 +26,9 @@ const User  = sequelize.define<TModel<IUserModel>>(
       type: DataTypes.STRING,
     },
     salt: {
+      type: DataTypes.STRING
+    },
+    hash: {
       type: DataTypes.STRING
     }
   },

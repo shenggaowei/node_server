@@ -10,6 +10,7 @@ const sequelize = new Sequelize("test", "root", "shenggao", {
     acquire: 60000,
     idle: 10000,
   },
+  timezone: '+08:00'
 });
 
 export default sequelize;
