@@ -25,6 +25,9 @@ const User_Login = sequelize.define<TModel<IUserLogin>>(
     status: {
       type: DataTypes.STRING,
       defaultValue: '1'
+    },
+    origin: {
+      type: DataTypes.STRING
     }
   },
   {

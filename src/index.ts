@@ -14,9 +14,10 @@ app.use(async (ctx, next) => {
     await next();
   } catch (err) {
     ctx.status = err.status || 500;
-    ctx.type = "html";
-    ctx.body = "<p>SomeThing Error</p>";
-    ctx.app.emit("error", err, ctx);
+    ctx.body = {
+      message: err.message,
+      code: err.code
+    };
   }
 });
 

@@ -5,6 +5,7 @@
   - [nodemon 实时编译](https://github.com/remy/nodemon) done
   - [koa 路由配置](https://github.com/koajs/router/blob/master/API.md) done
   - [数据库连接 sequelize](https://github.com/sequelize/sequelize) done
+  - [更换为 routing controller](https://github.com/typestack/routing-controllers/blob/develop/docs/lang/chinese/README.md)
   - src alias 路径映射
 - 功能配置
   - [日志配置](https://github.com/koajs/logger) done

@@ -1,0 +1,1 @@
+export type TOrigin = 'web' | 'mini-app' | 'app'
