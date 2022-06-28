@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
       "outDir": "./out",
       "rootDir": "./src",
       "sourceMap": true,
       "moduleResolution": "node",
       "target": "es5"
-  }
+  },
 }
