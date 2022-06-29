@@ -5,16 +5,16 @@ import {
 import sequelize from "../config/db";
 import type { TModel } from '../interface/model.define'
 
-interface IUserModel {
+interface IAuthModel {
   id: CreationOptional<number>;
   name: string;
   salt: string;
   hash: string
 }
 
-export type TUser = TModel<IUserModel>
+export type TAuth = TModel<IAuthModel>
 
-const User  = sequelize.define<TUser>(
+const Auth  = sequelize.define<TAuth>(
   "user",
   {
     id: {
@@ -37,4 +37,4 @@ const User  = sequelize.define<TUser>(
   }
 );
 
-export default User;
+export default Auth;

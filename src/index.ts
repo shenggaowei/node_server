@@ -1,9 +1,9 @@
 import { createKoaServer } from 'routing-controllers';
-import { UserController } from './controller/userController';
+import auth from './controller/auth';
 import "reflect-metadata"
 
 const app = createKoaServer({
-  controllers: [UserController],
+  controllers: [ auth ],
   cors: true
 });
 

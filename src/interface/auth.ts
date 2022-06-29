@@ -1,11 +1,11 @@
 import { TOrigin } from "./device";
 
-export interface IUser {
+export interface IAuth {
     userName: string;
     password: string;
     phone?: string
 }
 
-export interface ILoginParams extends IUser {
+export interface IAuthParams extends IAuth {
     origin: TOrigin
 }
