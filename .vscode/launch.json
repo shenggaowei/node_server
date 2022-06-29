@@ -15,7 +15,7 @@
             "smartStep": true,
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": "npm: build",
-            "program": "${workspaceFolder}\\src\\index.ts",
+            "program": "${workspaceFolder}\/src\/index.ts",
             "outFiles": [
                 "${workspaceFolder}/out/**/*.js"
             ]
