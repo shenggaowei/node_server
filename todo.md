@@ -2,10 +2,11 @@
   - 配置 ts done
   - ts debug 调试 done
   - 使用 esm 编写 done
+  - 配置alias导入 done
   - [nodemon 实时编译](https://github.com/remy/nodemon) done
   - [koa 路由配置](https://github.com/koajs/router/blob/master/API.md) done
   - [数据库连接 sequelize](https://github.com/sequelize/sequelize) done
-  - [更换为 routing controller](https://github.com/typestack/routing-controllers/blob/develop/docs/lang/chinese/README.md)
+  - [更换为 routing controller](https://github.com/typestack/routing-controllers/blob/develop/docs/lang/chinese/README.md) done
   - [使用 typedi 处理依赖注入](https://docs.typestack.community/typedi/v/develop/02-basic-usage-guide/05-inject-decorator)
   - [错误处理]
   - src alias 路径映射
