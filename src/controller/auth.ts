@@ -1,16 +1,13 @@
 import { JsonController,Body,Post} from 'routing-controllers';
-import { Container, Service } from 'typedi';
+import { Service } from 'typedi';
 import AuthService  from '@/service/auth'
 import { IAuthParams } from '@/interface/auth';
 
 @JsonController()
 @Service()
 export default class UserController {
-  authService: AuthService;
 
-  constructor() {
-    this.authService = Container.get(AuthService)
-  }
+  constructor(private authService: AuthService) {}
 
   @Post('/sign-in')
   async signIn(@Body() authInfo: IAuthParams) {

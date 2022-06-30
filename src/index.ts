@@ -1,9 +1,11 @@
-import { createKoaServer } from 'routing-controllers';
-import auth from './controller/auth';
+import { createKoaServer, useContainer } from 'routing-controllers';
+import { Container } from 'typedi'
 import "reflect-metadata"
 
+useContainer(Container)
+
 const app = createKoaServer({
-  controllers: [ auth ],
+  controllers: [__dirname + '/controller/*.ts'],
   cors: true
 });
 
