@@ -3,7 +3,7 @@ import { Service } from 'typedi';
 import sequelize from '../config/db';
 import Auth from "../model/auth";
 import UserLogin from '../model/user_login'
-import { createSalt, createToken } from "../utils/crypt";
+import { createSalt, createToken } from "@/helpers/crypt";
 import type * as authInterface from '../interface/auth'
 
 @Service()

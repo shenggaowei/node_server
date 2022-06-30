@@ -1,5 +1,5 @@
-import { REQUEST } from "../utils/fetch";
-import { code2Session } from "../utils/api";
+import { REQUEST } from "@/helpers/fetch";
+import { code2Session } from "@/helpers/api";
 
 interface ICode2SessionParams {
   appid: string;
