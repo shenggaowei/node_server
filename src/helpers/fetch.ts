@@ -1,10 +1,5 @@
 import axios from "axios";
 
-interface IResponse<T> {
-  data: T;
-  message: string;
-}
-
 export async function GET<R, P>(url: string, params?: P): Promise<R>;
 export async function GET<R, P>(url: string, params: P): Promise<R> {
   const data = await axios.get(url, params);

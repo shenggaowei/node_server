@@ -6,10 +6,13 @@
   - [nodemon 实时编译](https://github.com/remy/nodemon) done
   - [koa 路由配置](https://github.com/koajs/router/blob/master/API.md) done
   - [数据库连接 sequelize](https://github.com/sequelize/sequelize) done
-  - [更换为 routing controller](https://github.com/typestack/routing-controllers/blob/develop/docs/lang/chinese/README.md) done
-  - [使用 typedi 处理依赖注入](https://docs.typestack.community/typedi/v/develop/02-basic-usage-guide/05-inject-decorator)
-  - [错误处理]
-  - src alias 路径映射
+  - [路由替换为routing controller](https://github.com/typestack/routing-controllers/blob/develop/docs/lang/chinese/README.md) done
+  - [使用 typedi 处理依赖注入](https://docs.typestack.community/typedi/v/develop/02-basic-usage-guide/05-inject-decorator) done
+  - src alias 路径映射 done
+  - 中间件处理
+    - 错误处理，状态码以及code的定义
+    - 请求返回包装
+    - 登录态的校验
 - 功能配置
   - [日志配置](https://github.com/koajs/logger) done
   - redis 缓存

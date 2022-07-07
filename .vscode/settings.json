@@ -5,6 +5,7 @@
     "errcode",
     "errmsg",
     "kcors",
+    "middlewares",
     "prestart",
     "shenggao",
     "typedi",

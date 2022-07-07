@@ -5,8 +5,10 @@ import "reflect-metadata"
 useContainer(Container)
 
 const app = createKoaServer({
-  controllers: [__dirname + '/controller/*.ts'],
-  cors: true
+  controllers: [ __dirname + '/controller/*.ts' ],
+  middlewares: [ __dirname + '/middlewares/*.ts' ],
+  cors: true,
+  defaultErrorHandler: false
 });
 
 app.listen(7001, () => {

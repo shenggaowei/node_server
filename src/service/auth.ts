@@ -1,10 +1,12 @@
-import { Op, WhereOptions } from '@sequelize/core'
+import { WhereOptions } from '@sequelize/core'
 import { Service } from 'typedi';
-import sequelize from '../config/db';
-import Auth from "../model/auth";
-import UserLogin from '../model/user_login'
+import sequelize from '@/config/db';
+import Auth from "@/model/auth";
+import UserLogin from '@/model/user_login'
 import { createSalt, createToken } from "@/helpers/crypt";
-import type * as authInterface from '../interface/auth'
+import { EUserStatus } from '@/constants/auth';
+import * as EXCEPTION from '@/config/exception'
+import type * as authInterface from '@/interface/auth'
 
 @Service()
 export default class AuthService {
@@ -14,13 +16,15 @@ export default class AuthService {
       const loginUser = await Auth.findOne({
         attributes: ['id', 'name', 'salt', 'hash'],
         where: {
-          name: {
-            [Op.eq]: params.userName
-          },
+          name: params.userName,
+          status: EUserStatus.loginEd
         } as WhereOptions
       })
       if (!loginUser) {
-        return {}
+        return {
+          token: '',
+          message: '暂无此用户'
+        }
       } else {
         const { salt, id: user_id, hash } = loginUser
         const token = createToken(params.password, salt)
@@ -28,18 +32,22 @@ export default class AuthService {
           const insertToLogin = await UserLogin.create({
             user_id,
             token,
-            status: '2'
+            status: EUserStatus.loginEd
           }, { transaction: t })
-          return insertToLogin
+          return {
+            token: insertToLogin.token,
+            message: ''
+          }
         } else {
           return {
-            message: '密码不对'
+            message: '密码不对',
+            token: ''
           }
         }
       }
     } catch (error) {
       await t.rollback()
-      throw new Error('错误')
+      throw new EXCEPTION.Exception(error.message)
     }
   }
 
@@ -56,12 +64,38 @@ export default class AuthService {
        await UserLogin.create({
         user_id: registeredRet.id, 
         token: hash,
+        status: EUserStatus.loginEd
       }, { transaction: t })
       await t.commit()
       return hash
     } catch (error) {
       await t.rollback()
-      throw new Error('错误')
+      throw new EXCEPTION.Exception(error.message)
     }
+  }
+
+  public signOut = async (token) => {
+    let ret = await UserLogin.update({
+      status: EUserStatus.loginOut
+    }, {
+      where: {
+        token,
+      } as WhereOptions
+    })
+    return ret[0] === 1
+  }
+
+  public verifyToken = async (token) => {
+    const ret = await UserLogin.findOne({
+      attributes: ['id', 'token'],
+      where: {
+        token,
+        status: EUserStatus.loginEd
+      } as WhereOptions
+    })
+    if (ret) {
+      return true
+    }
+    return false
   }
 }
