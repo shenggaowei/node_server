@@ -9,3 +9,8 @@ export enum EUserStatus {
     // 登出状态
     loginOut = 1
 }
+
+export const AUTH_MESSAGE = {
+    NO_USER: '用户未注册',
+    INCORRECT_PASSWORD: '账号密码不正确'
+}

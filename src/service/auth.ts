@@ -4,7 +4,7 @@ import sequelize from "@/config/db";
 import Auth from "@/model/auth";
 import UserLogin from "@/model/user_login";
 import { createSalt, createToken } from "@/helpers/crypt";
-import { EUserStatus } from "@/constants/auth";
+import { AUTH_MESSAGE, EUserStatus } from "@/constants/auth";
 import * as EXCEPTION from "@/config/exception";
 import type * as authInterface from "@/interface/auth";
 
@@ -17,40 +17,31 @@ export default class AuthService {
         attributes: ["id", "name", "salt", "hash"],
         where: {
           name: params.userName,
-          status: EUserStatus.loginEd,
         } as WhereOptions,
       });
       if (!loginUser) {
-        return {
-          token: "",
-          message: "暂无此用户",
-        };
+        throw new EXCEPTION.AuthFailed(AUTH_MESSAGE.NO_USER)
       } else {
-        const { salt, id: user_id, hash } = loginUser;
-        const token = createToken(params.password, salt);
+        const { salt, id: user_id, hash } = loginUser
+        const token = createToken(params.password, salt)
         if (hash === token) {
           const insertToLogin = await UserLogin.create(
             {
               user_id,
               token,
               status: EUserStatus.loginEd,
+              origin: params.origin
             },
             { transaction: t }
           );
-          return {
-            token: insertToLogin.token,
-            message: "",
-          };
+          return insertToLogin.token
         } else {
-          return {
-            message: "密码不对",
-            token: "",
-          };
+          throw new EXCEPTION.AuthFailed(AUTH_MESSAGE.INCORRECT_PASSWORD)
         }
       }
     } catch (error) {
       await t.rollback();
-      throw new EXCEPTION.Exception(error.message);
+      throw new EXCEPTION.AuthFailed(error.message, error.code);
     }
   };
 
@@ -72,6 +63,7 @@ export default class AuthService {
           user_id: registeredRet.id,
           token: hash,
           status: EUserStatus.loginEd,
+          origin: params.origin
         },
         { transaction: t }
       );
@@ -102,12 +94,10 @@ export default class AuthService {
       attributes: ["id", "token"],
       where: {
         token,
-        status: EUserStatus.loginEd + "",
+        status: EUserStatus.loginEd,
       } as WhereOptions,
     });
-    if (ret) {
-      return true;
-    }
-    return false;
+    return !!ret
   };
 }
+          

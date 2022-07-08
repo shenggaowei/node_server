@@ -1,12 +1,14 @@
 import { createKoaServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi'
 import "reflect-metadata"
+import ResponseMiddleware from './middlewares/responseMiddleware';
+import ErrorMiddleware from './middlewares/errorMiddleware';
 
 useContainer(Container)
 
 const app = createKoaServer({
   controllers: [ __dirname + '/controller/*.ts' ],
-  middlewares: [ __dirname + '/middlewares/*.ts' ],
+  middlewares: [ ResponseMiddleware , ErrorMiddleware ],
   cors: true,
   defaultErrorHandler: false
 });

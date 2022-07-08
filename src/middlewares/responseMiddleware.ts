@@ -4,7 +4,7 @@ import { Service } from 'typedi';
 
 @Middleware({ type: 'after' })
 @Service()
-export default class ErrorMiddleware implements KoaMiddlewareInterface  {
+export default class ResponseMiddleware implements KoaMiddlewareInterface  {
     async use(ctx: Context, next: Next): Promise<any> {
         await next()
         ctx.status = 200

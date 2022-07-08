@@ -1,18 +1,16 @@
 import { Context, Next } from "koa";
-import { Middleware, KoaMiddlewareInterface } from "routing-controllers";
+import { KoaMiddlewareInterface } from "routing-controllers";
 import { Service } from "typedi";
 import AuthService from "@/service/auth";
 import * as exception_info from "@/constants/exception_info";
 
-@Middleware({ type: "before" })
 @Service()
 export default class AuthCheckMiddleware implements KoaMiddlewareInterface {
   constructor(private authService: AuthService) {}
 
   async use(context: Context, next: Next): Promise<any> {
-    const isLogin = await this.authService.verifyToken(
-      context.request.body.token
-    );
+    const token = context.request.body.token;
+    const isLogin = !!token && await this.authService.verifyToken(token);
     if (isLogin) {
       await next();
     } else {
