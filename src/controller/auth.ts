@@ -11,8 +11,10 @@ export default class UserController {
 
   @Post("/sign-in")
   async signIn(@Body() authInfo: IAuthParams) {
-    const ret = await this.authService.signIn(authInfo);
-    return ret;
+    const token = await this.authService.signIn(authInfo);
+    return {
+      token
+    };
   }
 
   @Post("/sign-up")
