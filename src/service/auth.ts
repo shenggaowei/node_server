@@ -20,23 +20,23 @@ export default class AuthService {
         } as WhereOptions,
       });
       if (!loginUser) {
-        throw new EXCEPTION.AuthFailed(AUTH_MESSAGE.NO_USER)
+        throw new EXCEPTION.AuthFailed(AUTH_MESSAGE.NO_USER);
       } else {
-        const { salt, id: user_id, hash } = loginUser
-        const token = createToken(params.password, salt)
+        const { salt, id: user_id, hash } = loginUser;
+        const token = createToken(params.password, salt);
         if (hash === token) {
           const insertToLogin = await UserLogin.create(
             {
               user_id,
               token,
               status: EUserStatus.loginEd,
-              origin: params.origin
+              origin: params.origin,
             },
             { transaction: t }
           );
-          return insertToLogin.token
+          return insertToLogin.token;
         } else {
-          throw new EXCEPTION.AuthFailed(AUTH_MESSAGE.INCORRECT_PASSWORD)
+          throw new EXCEPTION.AuthFailed(AUTH_MESSAGE.INCORRECT_PASSWORD);
         }
       }
     } catch (error) {
@@ -63,7 +63,7 @@ export default class AuthService {
           user_id: registeredRet.id,
           token: hash,
           status: EUserStatus.loginEd,
-          origin: params.origin
+          origin: params.origin,
         },
         { transaction: t }
       );
@@ -97,7 +97,6 @@ export default class AuthService {
         status: EUserStatus.loginEd,
       } as WhereOptions,
     });
-    return !!ret
+    return !!ret;
   };
 }
-          

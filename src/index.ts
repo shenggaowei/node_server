@@ -1,18 +1,18 @@
-import { createKoaServer, useContainer } from 'routing-controllers';
-import { Container } from 'typedi'
-import "reflect-metadata"
-import ResponseMiddleware from './middlewares/responseMiddleware';
-import ErrorMiddleware from './middlewares/errorMiddleware';
+import { createKoaServer, useContainer } from "routing-controllers";
+import { Container } from "typedi";
+import "reflect-metadata";
+import ResponseMiddleware from "./middlewares/responseMiddleware";
+import ErrorMiddleware from "./middlewares/errorMiddleware";
 
-useContainer(Container)
+useContainer(Container);
 
 const app = createKoaServer({
-  controllers: [ __dirname + '/controller/*.ts' ],
-  middlewares: [ ResponseMiddleware , ErrorMiddleware ],
+  controllers: [__dirname + "/controller/*.ts"],
+  middlewares: [ResponseMiddleware, ErrorMiddleware],
   cors: true,
-  defaultErrorHandler: false
+  defaultErrorHandler: false,
 });
 
 app.listen(7001, () => {
-  console.log('项目跑在了7001端口')
+  console.log("项目跑在了7001端口");
 });
