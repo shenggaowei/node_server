@@ -10,7 +10,7 @@ export default class AuthCheckMiddleware implements KoaMiddlewareInterface {
 
   async use(context: Context, next: Next): Promise<any> {
     const token = context.request.body.token;
-    const isLogin = !!token && await this.authService.verifyToken(token);
+    const isLogin = !!token && (await this.authService.verifyToken(token));
     if (isLogin) {
       await next();
     } else {

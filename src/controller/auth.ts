@@ -13,7 +13,7 @@ export default class UserController {
   async signIn(@Body() authInfo: IAuthParams) {
     const token = await this.authService.signIn(authInfo);
     return {
-      token
+      token,
     };
   }
 
@@ -21,7 +21,7 @@ export default class UserController {
   async signUp(@Body() authInfo: IAuthParams) {
     const token = await this.authService.signUp(authInfo);
     return {
-      token
+      token,
     };
   }
 
