@@ -1,10 +1,10 @@
-import { Context, Next} from 'koa';
+import { Context, Next } from 'koa';
 import { Middleware, KoaMiddlewareInterface } from 'routing-controllers';
 import { Service } from 'typedi';
 
 @Middleware({ type: 'after' })
 @Service()
-export default class ResponseMiddleware implements KoaMiddlewareInterface  {
+export default class ResponseMiddleware implements KoaMiddlewareInterface {
     async use(ctx: Context, next: Next): Promise<any> {
         await next()
         ctx.status = 200
@@ -14,5 +14,5 @@ export default class ResponseMiddleware implements KoaMiddlewareInterface  {
             message: '',
             extra: {}
         }
-      } 
+    }
 }

@@ -7,7 +7,7 @@ import AuthCheckMiddleware from "@/middlewares/authCheckMiddleware";
 @JsonController()
 @Service()
 export default class UserController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   @Post("/sign-in")
   async signIn(@Body() authInfo: IAuthParams) {

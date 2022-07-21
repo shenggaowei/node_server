@@ -2,8 +2,8 @@ import {
   DataTypes,
   CreationOptional,
 } from "@sequelize/core";
-import sequelize from "../config/db";
-import type { TModel } from '../interface/model.define'
+import sequelize from "@/config/db";
+import type { TModel } from '@/interface/model.define'
 
 interface IAuthModel {
   id: CreationOptional<number>;
@@ -14,7 +14,7 @@ interface IAuthModel {
 
 export type TAuth = TModel<IAuthModel>
 
-const Auth  = sequelize.define<TAuth>(
+const Auth = sequelize.define<TAuth>(
   "user",
   {
     id: {

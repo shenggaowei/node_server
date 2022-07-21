@@ -10,9 +10,9 @@
   - [使用 typedi 处理依赖注入](https://docs.typestack.community/typedi/v/develop/02-basic-usage-guide/05-inject-decorator) done
   - src alias 路径映射 done
   - 中间件处理
-    - 错误处理，状态码以及code的定义
-    - 请求返回包装
-    - 登录态的校验
+    - 错误处理，状态码以及code的定义 done
+    - 请求返回包装 done
+    - 登录态的校验 done
 - 功能配置
   - [日志配置](https://github.com/koajs/logger) done
   - redis 缓存

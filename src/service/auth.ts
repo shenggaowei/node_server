@@ -100,4 +100,4 @@ export default class AuthService {
     return !!ret
   };
 }
-          
+

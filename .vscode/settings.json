@@ -14,5 +14,6 @@
     "weishenggao",
     "weixin",
     "Wexin"
-  ]
+  ],
+  "editor.formatOnSave": true
 }

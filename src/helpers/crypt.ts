@@ -15,6 +15,6 @@ export function createSalt(): string {
  * @returns 
  */
 export function createToken(text: string, salt: string): string {
-   const token = crypto.createHmac('sha256', salt).update(text).digest('hex')
-   return token
+  const token = crypto.createHmac('sha256', salt).update(text).digest('hex')
+  return token
 }
