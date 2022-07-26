@@ -8,7 +8,7 @@ useContainer(Container);
 
 const app = createKoaServer({
   controllers: [__dirname + "/controller/*.ts"],
-  middlewares: [ResponseMiddleware, ErrorMiddleware],
+  middlewares: [ErrorMiddleware, ResponseMiddleware],
   cors: true,
   defaultErrorHandler: false,
 });

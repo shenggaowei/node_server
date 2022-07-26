@@ -6,7 +6,7 @@ import * as exception_info from "@/constants/exception_info";
 
 @Service()
 export default class AuthCheckMiddleware implements KoaMiddlewareInterface {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   async use(context: Context, next: Next): Promise<any> {
     const token = context.request.body.token;

@@ -16,8 +16,7 @@
 - 功能配置
   - [日志配置](https://github.com/koajs/logger) done
   - redis 缓存
-  - post bodyParser 解析
-  - 报错处理
+  - post bodyParser 解析 done routing-controller 默认支持
 - 上线配置
   - nginx 配置 done
   - docker 部署
