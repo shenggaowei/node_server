@@ -12,7 +12,8 @@
     "deploy": "npm run build  && pm2 restart index"
   },
   "keywords": [
-    "server"
+    "server",
+    "node"
   ],
   "author": "weishenggao",
   "license": "ISC",
