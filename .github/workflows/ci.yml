@@ -25,7 +25,7 @@ jobs:
           echo "哈哈"
           mkdir -p ~/.ssh/
           echo "$ID_RSA" > ~/.ssh/id_rsa 
-          ssh -t -R root@8.131.101.166
+          ssh -t root@8.131.101.166
           cd pro/node_server
           git pull origin master
 
