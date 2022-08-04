@@ -22,6 +22,7 @@ jobs:
         env: 
           ID_RSA: ${{ secrets.ID_RSA }} 
         run: |
+          echo "ID_RSA"
           mkdir -p ~/.ssh/
           echo "ID_RSA" > ~/.ssh/id_rsa 
           ssh -tt root@api.shenggao.tech
