@@ -2,7 +2,7 @@ import { Context, Next } from "koa";
 import { Middleware, KoaMiddlewareInterface } from "routing-controllers";
 import { Service } from "typedi";
 
-@Middleware({ type: "after" })
+@Middleware({ type: "before" })
 @Service()
 export default class ErrorMiddleware implements KoaMiddlewareInterface {
   async use(ctx: Context, next: Next): Promise<any> {

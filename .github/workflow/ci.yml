@@ -1,0 +1,36 @@
+name: node-server deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2 
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      
+      - name: ssh 
+        env: ${{ID_RSA}}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ID_RSA" > ~/.ssh/id_rsa 
+          ssh root@api.shenggao.tech
+          cd pro/node_server
+          git pull origin master
+
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy
+        run: npm run deploy
