@@ -20,7 +20,7 @@ jobs:
           echo "哈哈"
           mkdir -p ~/.ssh/
           echo "$ID_RSA" > ~/.ssh/id_rsa 
-          ssh -t root@8.131.101.166 echo "链接"
+          ssh -t -t root@8.131.101.166 echo "链接"
 
       - name: Install and Build
         run: |
