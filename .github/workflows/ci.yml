@@ -22,9 +22,9 @@ jobs:
         env: 
           ID_RSA: ${{ secrets.ID_RSA }} 
         run: |
-          echo "$ID_RSA"
+          echo "哈哈"
           mkdir -p ~/.ssh/
-          echo "ID_RSA" > ~/.ssh/id_rsa 
+          echo "$ID_RSA" > ~/.ssh/id_rsa 
           ssh -tt root@api.shenggao.tech
           cd pro/node_server
           git pull origin master
