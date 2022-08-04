@@ -19,10 +19,11 @@ jobs:
           node-version: "14"
       
       - name: ssh 
-        env: ${{ID_RSA}}
+        env: 
+          ID_RSA: ${{ secrets.ID_RSA }} 
         run: |
           mkdir -p ~/.ssh/
-          echo "$ID_RSA" > ~/.ssh/id_rsa 
+          echo "ID_RSA" > ~/.ssh/id_rsa 
           ssh root@api.shenggao.tech
           cd pro/node_server
           git pull origin master
