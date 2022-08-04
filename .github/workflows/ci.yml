@@ -24,7 +24,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           echo "ID_RSA" > ~/.ssh/id_rsa 
-          ssh root@api.shenggao.tech
+          ssh -tt root@api.shenggao.tech
           cd pro/node_server
           git pull origin master
 
