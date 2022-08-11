@@ -1,8 +1,9 @@
 import { createKoaServer, useContainer } from "routing-controllers";
 import { Container } from "typedi";
+import * as cors from '@koa/cors'
+import ResponseMiddleware from "@/middlewares/responseMiddleware";
+import ErrorMiddleware from "@/middlewares/errorMiddleware";
 import "reflect-metadata";
-import ResponseMiddleware from "./middlewares/responseMiddleware";
-import ErrorMiddleware from "./middlewares/errorMiddleware";
 
 useContainer(Container);
 
@@ -12,6 +13,12 @@ const app = createKoaServer({
   cors: true,
   defaultErrorHandler: false,
 });
+
+app.use(cors({
+  origin: (ctx) => {
+    return ["todo.shenggao.tech"].join(',')
+  }
+}))
 
 app.listen(7001, () => {
   console.log("项目跑在了7001端口");
