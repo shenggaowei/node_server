@@ -7,11 +7,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2 
-        with:
-          persist-credentials: false
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -22,12 +17,11 @@ jobs:
         env: 
           ID_RSA: ${{ secrets.ID_RSA }} 
         run: |
-          echo "ID_RSA"
+          echo "哈哈"
           mkdir -p ~/.ssh/
-          echo "ID_RSA" > ~/.ssh/id_rsa 
-          ssh -tt root@api.shenggao.tech
-          cd pro/node_server
-          git pull origin master
+          echo "$ID_RSA" > ~/.ssh/id_rsa 
+          echo "" > ~/.ssh/known_hosts
+          ssh -t -t root@8.131.101.166 echo "链接"
 
       - name: Install and Build
         run: |
