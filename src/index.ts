@@ -7,7 +7,7 @@ import ErrorMiddleware from "./middlewares/errorMiddleware";
 useContainer(Container);
 
 const app = createKoaServer({
-  controllers: [__dirname + "/controller/*.ts"],
+  controllers: [__dirname + "/controller/*.+(ts|js)"],
   middlewares: [ErrorMiddleware, ResponseMiddleware],
   cors: true,
   defaultErrorHandler: false,
