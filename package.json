@@ -9,7 +9,7 @@
     "build":"tsc",
     "sync": "npx ts-node ./src/script/sync.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "npm run build  && pm2 start node/index.js --node-args='-r tsconfig-paths/register'"
+    "deploy": "npm run build  && pm2 start out/index.js --node-args='-r tsconfig-paths/register'"
   },
   "keywords": [
     "server",
