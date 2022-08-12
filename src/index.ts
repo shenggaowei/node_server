@@ -16,7 +16,7 @@ const app = createKoaServer({
 
 app.use(cors({
   origin: (ctx) => {
-    return ["todo.shenggao.tech"].join(',')
+    return "https://todo.shenggao.tech"
   }
 }))
 
