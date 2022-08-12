@@ -9,7 +9,7 @@
     "build": "tsc",
     "sync": "npx ts-node ./src/script/sync.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "npm run build  && pm2 start node/index.js --node-args='-r tsconfig-paths/register'"
+    "deploy": "npm run build && pm2 start out/index.js --node-args='-r ./tsconfig-paths-bootstrap.js'"
   },
   "keywords": [
     "server",
@@ -42,7 +42,7 @@
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.4.1",
     "ts-node": "^10.7.0",
-    "tsconfig-paths": "^4.0.0",
+    "tsconfig-paths": "^4.1.0",
     "typescript": "^4.6.3"
   }
 }
