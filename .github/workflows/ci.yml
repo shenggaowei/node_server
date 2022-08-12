@@ -1,32 +1,28 @@
-name: node-server deploy
+name: Node CI
 on:
   push:
     branches:
       - master
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-18.04
-    steps:
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14"
       
-      - name: ssh 
-        env: 
-          ID_RSA: ${{ secrets.ID_RSA }} 
-        run: |
-          echo "哈哈"
-          mkdir -p ~/.ssh/
-          echo "$ID_RSA" > ~/.ssh/id_rsa 
-          echo "" > ~/.ssh/known_hosts
-          ssh -t -t root@8.131.101.166 echo "链接"
-
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
-
-      - name: Deploy
-        run: npm run deploy
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    - name: Install npm dependencies
+      run: npm install
+    - name: Run build task
+      run: npm run build --if-present
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SOURCE: "out/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: "/out/, /node_modules/"
