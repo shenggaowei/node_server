@@ -8,8 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: get code
-        - uses: actions/checkout@v2
+      - name: checkout 
+        uses: actions/checkout@v2
 
       - name: remove dir
         uses: appleboy/ssh-action@master
