@@ -27,6 +27,9 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.SERVER_SSH_KEY  }}
         script: |
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh
+          npm --help
           cd ~/pro/node_server
           npm install
           npm run deploy
