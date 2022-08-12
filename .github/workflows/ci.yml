@@ -8,9 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: get code
+      - uses: actions/checkout@v2
 
-    - name: rm dir
+    - name: remove dir
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.REMOTE_HOST }}
@@ -40,6 +41,6 @@ jobs:
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
           npm --help
-          cd ~/pro/node_server
+          cd ${{ secrets.REMOTE_TARGET }} 
           npm install
           npm run deploy
