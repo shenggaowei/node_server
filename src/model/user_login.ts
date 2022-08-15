@@ -1,6 +1,6 @@
 import { CreateOptions, DataTypes } from '@sequelize/core'
-import type { TModel } from '../interface/model.define'
-import sequelize from '../config/db'
+import type { TModel } from '@/interface/model.define'
+import sequelize from '@/config/db'
 
 interface IUserLogin {
   user_id: string;
@@ -23,15 +23,15 @@ const User_Login = sequelize.define<TModel<IUserLogin>>(
       type: DataTypes.STRING
     },
     status: {
-      type: DataTypes.NUMBER,
-      defaultValue: 1 
+      type: DataTypes.INTEGER,
+      defaultValue: 1
     },
     origin: {
       type: DataTypes.STRING
     }
   },
   {
-    tableName: 'user_login'
+    tableName: 'user_login',
   }
 )
 
