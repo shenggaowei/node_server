@@ -1,4 +1,10 @@
-import { JsonController, Body, Post, UseBefore } from "routing-controllers";
+import {
+  JsonController,
+  Body,
+  Post,
+  UseBefore,
+  Get,
+} from "routing-controllers";
 import { Service } from "typedi";
 import AuthService from "@/service/auth";
 import { IAuthParams } from "@/interface/auth";
@@ -7,7 +13,16 @@ import AuthCheckMiddleware from "@/middlewares/authCheckMiddleware";
 @JsonController()
 @Service()
 export default class UserController {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
+
+  @Get("/mock-data")
+  async getMockData(@Body() authInfo: IAuthParams) {
+    return {
+      name: "升高",
+      age: 18,
+      height: 185,
+    };
+  }
 
   @Post("/sign-in")
   async signIn(@Body() authInfo: IAuthParams) {
