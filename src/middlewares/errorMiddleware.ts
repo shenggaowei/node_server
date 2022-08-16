@@ -9,12 +9,20 @@ export default class ErrorMiddleware implements KoaMiddlewareInterface {
     try {
       await next();
     } catch (error) {
-      const { message, code, status } = error;
+      let { message, code, status, errors, } = error;
       ctx.status = status || 200;
+      if (errors) {
+        message = errors.map(ele => {
+          return Object.keys(ele.constraints).reduce((info, key) => {
+            const value = ele.constraints[key];
+            return info.concat(value)
+          }, []).join('; ')
+        }).flat().join('; ')
+      }
       ctx.body = {
         data: {},
         code,
-        message,
+        message: message,
         extra: {},
       };
     }
