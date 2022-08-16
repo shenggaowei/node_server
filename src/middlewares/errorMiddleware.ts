@@ -1,3 +1,4 @@
+import { HTTP_CODE } from "@/constants/exception_info";
 import { Context, Next } from "koa";
 import { Middleware, KoaMiddlewareInterface } from "routing-controllers";
 import { Service } from "typedi";
@@ -9,7 +10,7 @@ export default class ErrorMiddleware implements KoaMiddlewareInterface {
     try {
       await next();
     } catch (error) {
-      let { message, code, status, errors } = error;
+      let { message, code = HTTP_CODE, status, errors } = error;
       ctx.status = status || 200;
       if (errors) {
         message = errors
