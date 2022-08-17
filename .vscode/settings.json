@@ -19,5 +19,8 @@
     "weixin",
     "Wexin"
   ],
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "stdio.h": "c"
+  }
 }

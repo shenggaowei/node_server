@@ -99,4 +99,19 @@ export default class AuthService {
     });
     return !!ret;
   };
+
+  public getUserInfo = async token => {
+    const ret = await UserLogin.findAll({
+      where: {
+        token,
+        status: EUserStatus.loginEd,
+      } as WhereOptions,
+      include: {
+        model: Auth,
+        required: false
+      }
+    });
+    console.log(ret)
+    return ret
+  }
 }

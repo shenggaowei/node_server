@@ -13,7 +13,7 @@ export default class UserController {
   @Post("/create")
   @UseBefore(AuthCheckMiddleware)
   async createTodo(@Body({ validate: true }) todoInfo: TodoBody) {
-    const params = todoInfo as unknown as ITodoCreateParams
+    const params = { ...todoInfo } as unknown as ITodoCreateParams
     const token = await this.todoService.createTodo(params);
     return {
       token,
