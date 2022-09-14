@@ -13,7 +13,7 @@ import AuthCheckMiddleware from "@/middlewares/authCheckMiddleware";
 @JsonController()
 @Service()
 export default class UserController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   @Get("/mock-data")
   async getMockData(@Body() authInfo: IAuthParams) {

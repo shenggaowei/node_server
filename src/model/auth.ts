@@ -4,6 +4,7 @@ import {
 } from "@sequelize/core";
 import sequelize from "@/config/db";
 import type { TModel } from '@/interface/model.define'
+import TodoModel from '@/model/todo'
 
 interface IAuthModel {
   id: CreationOptional<number>;
@@ -36,5 +37,12 @@ const Auth = sequelize.define<TAuth>(
     tableName: "user",
   }
 );
+
+Auth.hasOne(TodoModel, {
+  foreignKey: {
+    name: 'user_id'
+  },
+  constraints: false
+})
 
 export default Auth;
