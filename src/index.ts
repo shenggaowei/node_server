@@ -1,9 +1,11 @@
-import { createKoaServer, useContainer } from "routing-controllers";
-import { Container } from "typedi";
+import { createKoaServer, useContainer } from "routing-controllers"
+import { Container } from "typedi"
+import { Context } from "koa"
 import * as cors from '@koa/cors'
-import ResponseMiddleware from "@/middlewares/responseMiddleware";
-import ErrorMiddleware from "@/middlewares/errorMiddleware";
-import "reflect-metadata";
+import ResponseMiddleware from "@/middlewares/responseMiddleware"
+import ErrorMiddleware from "@/middlewares/errorMiddleware"
+import { allowHost, defaultHost } from '@/config/origin'
+import "reflect-metadata"
 
 useContainer(Container);
 
@@ -15,8 +17,9 @@ const app = createKoaServer({
 });
 
 app.use(cors({
-  origin: (ctx) => {
-    return "https://todo.shenggao.tech"
+  origin: (ctx: Context) => {
+    const isAllow = allowHost.includes(ctx.header.origin)
+    return isAllow ? ctx.header.origin : defaultHost
   }
 }))
 
