@@ -17,7 +17,8 @@ export default class TodoService {
         description: todoInfo.description,
         end_time: todoInfo.endTime,
         tag_ids: todoInfo.tagIds,
-        group_id: todoInfo.groupId
+        group_id: todoInfo.groupId,
+        user_id: userInfo[0].user_id
       })
       return ret
     } catch (error) {
