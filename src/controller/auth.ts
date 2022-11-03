@@ -18,6 +18,7 @@ export default class UserController {
   @Get("/mock-data")
   async getMockData(@Body() authInfo: IAuthParams) {
     return {
+      country: 'china',
       name: "升高",
       age: 18,
       height: 185,

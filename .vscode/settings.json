@@ -22,5 +22,6 @@
   "editor.formatOnSave": true,
   "files.associations": {
     "stdio.h": "c"
-  }
+  },
+  "editor.fontFamily": "JetBrains Mono"
 }
