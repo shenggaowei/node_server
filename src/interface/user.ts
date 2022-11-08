@@ -3,12 +3,12 @@ import { TOrigin } from "./device";
 export interface IVerifyAuthInfo {
     token: string
 }
-export interface IAuth {
+export interface IUser {
     userName: string;
     password: string;
     phone?: string
 }
 
-export interface IAuthParams extends IAuth {
+export interface IUserParams extends IUser {
     origin: TOrigin
 }

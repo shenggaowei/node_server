@@ -1,33 +1,32 @@
-import { WhereOptions } from "@sequelize/core";
 import { Service } from "typedi";
 import sequelize from "@/config/db";
-import Auth from "@/model/auth";
-import UserLogin from "@/model/user_login";
-import { createSalt, createToken } from "@/helpers/crypt";
+import userModel from "@/models/user.model";
+import loginModel from "@/models/login.model";
+import { createSalt, createToken } from "@/utils/crypt";
 import { AUTH_MESSAGE, EUserStatus } from "@/constants/auth";
 import * as EXCEPTION from "@/config/exception";
-import type * as authInterface from "@/interface/auth";
+import type * as userInterface from "@/interface/user";
 
 @Service()
-export default class AuthService {
-  public signIn = async (params: authInterface.IAuthParams) => {
+export default class UserService {
+  public signIn = async (params: userInterface.IUserParams) => {
     const t = await sequelize.transaction();
     try {
-      const loginUser = await Auth.findOne({
+      const loginUser = await userModel.findOne({
         attributes: ["id", "name", "salt", "hash"],
         where: {
           name: params.userName,
-        } as WhereOptions,
+        },
       });
       if (!loginUser) {
         throw new EXCEPTION.AuthFailed(AUTH_MESSAGE.NO_USER);
       } else {
-        const { salt, id: user_id, hash } = loginUser;
+        const { salt, id: userId, hash } = loginUser;
         const token = createToken(params.password, salt);
         if (hash === token) {
-          const insertToLogin = await UserLogin.create(
+          const insertToLogin = await loginModel.create(
             {
-              user_id,
+              userId,
               token,
               status: EUserStatus.loginEd,
               origin: params.origin,
@@ -45,12 +44,12 @@ export default class AuthService {
     }
   };
 
-  public signUp = async (params: authInterface.IAuthParams) => {
+  public signUp = async (params: userInterface.IUserParams) => {
     const salt = createSalt();
     const hash = createToken(params.password, salt);
     const t = await sequelize.transaction();
     try {
-      const registeredRet = await Auth.create(
+      const registeredRet = await userModel.create(
         {
           name: params.userName,
           salt,
@@ -58,9 +57,9 @@ export default class AuthService {
         },
         { transaction: t }
       );
-      await UserLogin.create(
+      await loginModel.create(
         {
-          user_id: registeredRet.id,
+          userId: registeredRet.id,
           token: hash,
           status: EUserStatus.loginEd,
           origin: params.origin,
@@ -70,48 +69,48 @@ export default class AuthService {
       await t.commit();
       return hash;
     } catch (error) {
+      console.log(error)
       await t.rollback();
       throw new EXCEPTION.Exception(error.message);
     }
   };
 
   public signOut = async (token) => {
-    let ret = await UserLogin.update(
+    let ret = await loginModel.update(
       {
         status: EUserStatus.loginOut,
       },
       {
         where: {
           token,
-        } as WhereOptions,
+        },
       }
     );
     return ret[0] === 1;
   };
 
   public verifyToken = async (token) => {
-    const ret = await UserLogin.findOne({
+    const ret = await loginModel.findOne({
       attributes: ["id", "token"],
       where: {
         token,
         status: EUserStatus.loginEd,
-      } as WhereOptions,
+      },
     });
     return !!ret;
   };
 
   public getUserInfo = async token => {
-    const ret = await UserLogin.findAll({
+    const ret = await loginModel.findAll({
       where: {
         token,
         status: EUserStatus.loginEd,
-      } as WhereOptions,
+      },
       include: {
-        model: Auth,
+        model: userModel,
         required: false
       }
     });
-    console.log(ret)
     return ret
   }
 }

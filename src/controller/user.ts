@@ -6,19 +6,20 @@ import {
   Get,
 } from "routing-controllers";
 import { Service } from "typedi";
-import AuthService from "@/service/auth";
-import { IAuthParams } from "@/interface/auth";
+import UserService from "@/service/user";
+import { IUserParams } from "@/interface/user";
 import AuthCheckMiddleware from "@/middlewares/authCheckMiddleware";
 
 @JsonController()
 @Service()
 export default class UserController {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: UserService) { }
 
   @Get("/mock-data")
-  async getMockData(@Body() authInfo: IAuthParams) {
+  async getMockData(@Body() authInfo: IUserParams) {
     return {
       country: 'china',
+      province: '山东',
       name: "升高",
       age: 18,
       height: 185,
@@ -26,7 +27,7 @@ export default class UserController {
   }
 
   @Post("/sign-in")
-  async signIn(@Body() authInfo: IAuthParams) {
+  async signIn(@Body() authInfo: IUserParams) {
     const token = await this.authService.signIn(authInfo);
     return {
       token,
@@ -34,7 +35,7 @@ export default class UserController {
   }
 
   @Post("/sign-up")
-  async signUp(@Body() authInfo: IAuthParams) {
+  async signUp(@Body() authInfo: IUserParams) {
     const token = await this.authService.signUp(authInfo);
     return {
       token,

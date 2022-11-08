@@ -27,13 +27,6 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@koa/cors@^3.3.0":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@koa/cors/-/cors-3.4.1.tgz#ddd5c6ff07a1e60831e1281411a3b9fdb95a5b26"
-  integrity sha512-/sG9NlpGZ/aBpnRamIlGs+wX+C/IJ5DodNK7iPQIVCG4eUQdGeshGhWQ6JCi7tpnD9sCtFXcS04iTimuaJfh4Q==
-  dependencies:
-    vary "^1.1.2"
-
 "@sequelize/core@^7.0.0-alpha.10":
   version "7.0.0-alpha.10"
   resolved "https://registry.yarnpkg.com/@sequelize/core/-/core-7.0.0-alpha.10.tgz#dbc2c1010bd265f6d9a242614b69f47d190a6846"
@@ -148,6 +141,13 @@
   resolved "https://registry.yarnpkg.com/@types/http-errors/-/http-errors-1.8.2.tgz#7315b4c4c54f82d13fa61c228ec5c2ea5cc9e0e1"
   integrity sha512-EqX+YQxINb+MeXaIqYDASb6U6FCHbWjkj4a1CKDBks3d/QiB2+PqBLyO72vLDgAO1wUI4O+9gweRcQK11bTL/w==
 
+"@types/kcors@^2.2.6":
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@types/kcors/-/kcors-2.2.6.tgz#24a531f4b36329a80d6e4299aac655c363a95af0"
+  integrity sha512-y5gCt/795EWTR5AZrgbG2rez6l5aYF3RNIHrsLMl6U9LbzUUWcDOApAxu0pMCORTNdJr+jOrEW3NlZ++jnO0sQ==
+  dependencies:
+    "@types/koa" "*"
+
 "@types/keygrip@*":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@types/keygrip/-/keygrip-1.0.2.tgz#513abfd256d7ad0bf1ee1873606317b33b1b2a72"
@@ -232,6 +232,11 @@
   dependencies:
     "@types/mime" "*"
     "@types/node" "*"
+
+"@types/validator@^13.7.1":
+  version "13.7.10"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.7.10.tgz#f9763dc0933f8324920afa9c0790308eedf55ca7"
+  integrity sha512-t1yxFAR2n0+VO6hd/FJ9F2uezAZVWHLmpmlJzm1eX03+H7+HsuTAp7L8QJs+2pQCfWkP1+EXsGK9Z9v7o/qPVQ==
 
 abbrev@1, abbrev@^1.0.0:
   version "1.1.1"
@@ -929,6 +934,18 @@ glob-parent@~5.1.2:
   dependencies:
     is-glob "^4.0.1"
 
+glob@7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.0.tgz#d15535af7732e02e948f4c41628bd910293f6023"
+  integrity sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.4"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
+
 glob@^7.1.4:
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.3.tgz#b8df0fb802bbfa8e89bd1d938b4e16578ed44f2b"
@@ -1040,7 +1057,7 @@ inflation@^2.0.0:
   resolved "https://registry.yarnpkg.com/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
   integrity sha512-m3xv4hJYR2oXw4o4Y5l6P5P16WYmazYof+el6Al3f+YlggGj6qT9kImBAnzDelRALnP5d3h4jGBPKzYCizjZZw==
 
-inflection@^1.13.1:
+inflection@^1.13.1, inflection@^1.13.2:
   version "1.13.4"
   resolved "https://registry.yarnpkg.com/inflection/-/inflection-1.13.4.tgz#65aa696c4e2da6225b148d7a154c449366633a32"
   integrity sha512-6I/HUDeYFfuNCVS3td055BaXBwKYuzw7K3ExVMStBowKo9oOAMJIXIHvdyR3iboTCp1b+1i5DSkIZTcwIktuDw==
@@ -1352,7 +1369,7 @@ mime@1.6.0:
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
-minimatch@^3.1.1, minimatch@^3.1.2:
+minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
   integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
@@ -1719,6 +1736,11 @@ retry-as-promised@^5.0.0:
   resolved "https://registry.yarnpkg.com/retry-as-promised/-/retry-as-promised-5.0.0.tgz#f4ecc25133603a2d2a7aff4a128691d7bc506d54"
   integrity sha512-6S+5LvtTl2ggBumk04hBo/4Uf6fRJUwIgunGZ7CYEBCeufGFW1Pu6ucUf/UskHeWOIsUcLOGLFXPig5tR5V1nA==
 
+retry-as-promised@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/retry-as-promised/-/retry-as-promised-6.1.0.tgz#11eca9a0f97804d552ec8e74bc4eb839bd226dc4"
+  integrity sha512-Hj/jY+wFC+SB9SDlIIFWiGOHnNG0swYbGYsOj2BJ8u2HKUaobNKab0OIC0zOLYzDy0mb7A4xA5BMo4LMz5YtEA==
+
 routing-controllers@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/routing-controllers/-/routing-controllers-0.9.0.tgz#979016523db37832d4c9a23c33b2654a89a563de"
@@ -1811,6 +1833,35 @@ sequelize-pool@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/sequelize-pool/-/sequelize-pool-7.1.0.tgz#210b391af4002762f823188fd6ecfc7413020768"
   integrity sha512-G9c0qlIWQSK29pR/5U2JF5dDQeqqHRragoyahj/Nx4KOOQ3CPPfzxnfqFPCSB7x5UgjOgnZ61nSxz+fjDpRlJg==
+
+sequelize-typescript@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/sequelize-typescript/-/sequelize-typescript-2.1.5.tgz#f12d14607cc8abfd6172cd99f7d3255ec5c4d78e"
+  integrity sha512-x1CNODct8gJyfZPwEZBU5uVGNwgJI2Fda913ZxD5ZtCSRyTDPBTS/0uXciF+MlCpyqjpmoCAPtudQWzw579bzA==
+  dependencies:
+    glob "7.2.0"
+
+sequelize@^6.25.5:
+  version "6.25.5"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.25.5.tgz#d19982ce40f5d3663df662ac4cb34ba8649eb38f"
+  integrity sha512-QwA2kL4lSNy4mYTv1Zm4DjvloZLaYajuYF5QMOv0O7FameMUEl8Q5zOWRD+FNKGCLzyOJ28gQCo3HX0N9mcssA==
+  dependencies:
+    "@types/debug" "^4.1.7"
+    "@types/validator" "^13.7.1"
+    debug "^4.3.3"
+    dottie "^2.0.2"
+    inflection "^1.13.2"
+    lodash "^4.17.21"
+    moment "^2.29.1"
+    moment-timezone "^0.5.34"
+    pg-connection-string "^2.5.0"
+    retry-as-promised "^6.1.0"
+    semver "^7.3.5"
+    sequelize-pool "^7.1.0"
+    toposort-class "^1.0.1"
+    uuid "^8.3.2"
+    validator "^13.7.0"
+    wkx "^0.5.0"
 
 serve-static@1.15.0:
   version "1.15.0"

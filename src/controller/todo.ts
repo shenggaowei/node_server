@@ -3,7 +3,7 @@ import { Service } from "typedi";
 import TodoService from "@/service/todo";
 import AuthCheckMiddleware from "@/middlewares/authCheckMiddleware";
 import type { ITodoCreateParams } from "@/interface/todo";
-import { TodoBody } from "@/params/todo";
+import { TodoBody } from "@/utils/param_validator/todo";
 
 @JsonController("/todo")
 @Service()
@@ -21,7 +21,7 @@ export default class UserController {
   }
 
   // @Post("/get/:id")
-  // async getTodoById(@Body() authInfo: IAuthParams) {
+  // async getTodoById(@Body() authInfo: IUserParams) {
   // const token = await this.authService.signUp(authInfo);
   // return {
   // token,
@@ -29,7 +29,7 @@ export default class UserController {
   // }
 
   // @Post("/delete/:id")
-  // async deleteTodoById(@Body() authInfo: IAuthParams) {
+  // async deleteTodoById(@Body() authInfo: IUserParams) {
   // const token = await this.authService.signUp(authInfo);
   // return {
   // token,
@@ -37,7 +37,7 @@ export default class UserController {
   // }
 
   // @Post("/update/:id")
-  // async updateTodoById(@Body() authInfo: IAuthParams) {
+  // async updateTodoById(@Body() authInfo: IUserParams) {
   // const token = await this.authService.signUp(authInfo);
   // return {
   // token,

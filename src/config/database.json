@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "shenggao",
+    "database": "test",
+    "host": "8.131.101.166",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "shenggao",
+    "database": "test",
+    "host": "8.131.101.166",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "shenggao",
+    "database": "test",
+    "host": "8.131.101.166",
+    "dialect": "mysql"
+  }
+}

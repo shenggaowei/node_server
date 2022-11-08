@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "baseUrl": "./",
-      "outDir": "./out",
-      "rootDir": "./src",
-      "sourceMap": true,
-      "moduleResolution": "node",
-      "target": "es5",
-      "paths": {
-        "@/*": ["src/*"]
-      }
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "outDir": "./out",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "target": "es5",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }

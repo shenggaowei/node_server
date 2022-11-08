@@ -1,7 +1,7 @@
 import { createKoaServer, useContainer } from "routing-controllers"
 import { Container } from "typedi"
 import { Context } from "koa"
-import * as cors from '@koa/cors'
+import cors from 'kcors'
 import ResponseMiddleware from "@/middlewares/responseMiddleware"
 import ErrorMiddleware from "@/middlewares/errorMiddleware"
 import { allowHost, defaultHost } from '@/config/origin'
@@ -12,8 +12,8 @@ useContainer(Container);
 const app = createKoaServer({
   controllers: [__dirname + "/controller/*.+(ts|js)"],
   middlewares: [ErrorMiddleware, ResponseMiddleware],
-  cors: true,
   defaultErrorHandler: false,
+  cors: true,
 });
 
 app.use(cors({

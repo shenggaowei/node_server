@@ -1,4 +1,4 @@
-import type { IVerifyAuthInfo } from "./auth";
+import type { IVerifyAuthInfo } from "./user";
 
 export interface ITodoModel {
     content: string;

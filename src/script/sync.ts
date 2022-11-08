@@ -1,11 +1,9 @@
-import Auth from '@/model/auth'
-import User_Login from '@/model/user_login'
-import Todo from '@/model/todo'
+import User from '@/models/user.model'
+import Todo from '@/models/todo.model'
 
 (async function () {
   try {
-    await Auth.sync({ alter: true })
-    await User_Login.sync({ alter: true })
+    await User.sync({ force: true })
     await Todo.sync({ force: true })
   } catch (e) {
     console.log(e);
