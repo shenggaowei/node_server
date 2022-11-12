@@ -7,7 +7,6 @@
     "start": "nodemon --ext js,ts --exec npm run dev",
     "dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "build": "tsc",
-    "sync": "ts-node -r tsconfig-paths/register src/script/sync.ts",
     "migration:run": "sequelize-cli db:migrate",
     "migration:create": "sequelize-cli migration:create --name",
     "deploy": "npm run build && pm2 restart out/index.js --node-args='-r ./tsconfig-paths-bootstrap.js'"
