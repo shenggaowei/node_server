@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout 
+      - name: checkout
         uses: actions/checkout@v2
 
       - name: remove dir
@@ -21,7 +21,7 @@ jobs:
             cd ~/pro/node_server
             rm -rf *
 
-      - name: deploy to server 
+      - name: deploy to server
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
@@ -30,7 +30,7 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: "/node_modules/"
-      
+
       - name: start server
         uses: appleboy/ssh-action@master
         with:
@@ -42,5 +42,5 @@ jobs:
             source ~/.nvm/nvm.sh
             npm --help
             cd ${{ secrets.REMOTE_TARGET }} 
-            npm install
+            yarn 
             npm run deploy
