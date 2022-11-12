@@ -11,26 +11,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: remove dir
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY  }}
-          script: |
-            cd ~/pro/node_server
-            rm -rf *
-
-      - name: deploy to server
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          SOURCE: "."
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
-          EXCLUDE: "/node_modules/"
-
       - name: start server
         uses: appleboy/ssh-action@master
         with:
@@ -42,5 +22,6 @@ jobs:
             source ~/.nvm/nvm.sh
             npm --help
             cd ${{ secrets.REMOTE_TARGET }} 
+            git pull origin master
             yarn 
             npm run deploy
