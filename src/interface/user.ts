@@ -1,14 +1,16 @@
 import { TOrigin } from "./device";
 
 export interface IVerifyAuthInfo {
-    token: string
+  token: string;
 }
 export interface IUser {
-    userName: string;
-    password: string;
-    phone?: string
+  userName: string;
+  password: string;
+  phone?: string;
 }
 
 export interface IUserParams extends IUser {
-    origin: TOrigin
+  origin: TOrigin;
+  uuid: string;
+  captchaText: string;
 }

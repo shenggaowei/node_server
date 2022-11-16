@@ -6,9 +6,11 @@ import { createSalt, createToken } from "@/utils/crypt";
 import { AUTH_MESSAGE, EUserStatus } from "@/constants/auth";
 import * as EXCEPTION from "@/config/exception";
 import type * as userInterface from "@/interface/user";
+import { getRedis } from "@/utils/redis";
 
 @Service()
 export default class UserService {
+  // 登录逻辑
   public signIn = async (params: userInterface.IUserParams) => {
     const t = await sequelize.transaction();
     try {
@@ -33,6 +35,7 @@ export default class UserService {
             },
             { transaction: t }
           );
+          await t.commit();
           return insertToLogin.token;
         } else {
           throw new EXCEPTION.AuthFailed(AUTH_MESSAGE.INCORRECT_PASSWORD);
@@ -44,7 +47,13 @@ export default class UserService {
     }
   };
 
+  // 注册逻辑
   public signUp = async (params: userInterface.IUserParams) => {
+    const redisCaptcha = await getRedis(params.uuid);
+    // 如果验证码不正确，直接返回
+    if (redisCaptcha !== params.captchaText) {
+      throw new EXCEPTION.Exception(AUTH_MESSAGE.INCORRECT_CAPTCHA);
+    }
     const salt = createSalt();
     const hash = createToken(params.password, salt);
     const t = await sequelize.transaction();
@@ -69,12 +78,13 @@ export default class UserService {
       await t.commit();
       return hash;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       await t.rollback();
       throw new EXCEPTION.Exception(error.message);
     }
   };
 
+  // 退出登录
   public signOut = async (token) => {
     let ret = await loginModel.update(
       {
@@ -89,6 +99,7 @@ export default class UserService {
     return ret[0] === 1;
   };
 
+  // 校验 token 有效性
   public verifyToken = async (token) => {
     const ret = await loginModel.findOne({
       attributes: ["id", "token"],
@@ -100,7 +111,8 @@ export default class UserService {
     return !!ret;
   };
 
-  public getUserInfo = async token => {
+  // 根据 token 获取用户信息
+  public getUserInfo = async (token) => {
     const ret = await loginModel.findAll({
       where: {
         token,
@@ -108,9 +120,9 @@ export default class UserService {
       },
       include: {
         model: userModel,
-        required: false
-      }
+        required: false,
+      },
     });
-    return ret
-  }
+    return ret;
+  };
 }

@@ -9,24 +9,11 @@ import { Service } from "typedi";
 import UserService from "@/service/user";
 import { IUserParams } from "@/interface/user";
 import AuthCheckMiddleware from "@/middlewares/authCheckMiddleware";
-import { setRedis, getRedis } from "@/utils/redis";
 
 @JsonController()
 @Service()
 export default class UserController {
   constructor(private authService: UserService) {}
-
-  @Get("/set-redis")
-  async setRedis() {
-    await setRedis("name", "shenggao");
-    return true;
-  }
-
-  @Get("/get-redis")
-  async getRedis() {
-    const data = await getRedis("name");
-    return data;
-  }
 
   @Get("/mock-data")
   async getMockData(@Body() authInfo: IUserParams) {
