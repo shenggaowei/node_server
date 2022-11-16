@@ -31,10 +31,12 @@
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
+    "redis": "^4.5.0",
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.9.0",
     "sequelize": "^6.25.5",
     "sequelize-typescript": "^2.1.5",
+    "svg-captcha": "^1.4.0",
     "typedi": "^0.10.0"
   },
   "devDependencies": {
@@ -44,10 +46,16 @@
     "@types/koa-logger": "^3.1.2",
     "@types/koa-router": "^7.4.4",
     "@types/lodash": "^4.14.182",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
     "nodemon": "^2.0.15",
+    "prettier": "2.7.1",
     "sequelize-cli": "^6.4.1",
     "ts-node": "^10.7.0",
     "tsconfig-paths": "^4.1.0",
     "typescript": "^4.6.3"
+  },
+  "lint-staged": {
+    "src/**/*": "prettier --write --ignore-unknown"
   }
 }
