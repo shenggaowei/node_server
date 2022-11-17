@@ -10,8 +10,6 @@ import "reflect-metadata";
 
 useContainer(Container);
 
-createRedis();
-
 const app = createKoaServer({
   controllers: [__dirname + "/controller/*.+(ts|js)"],
   middlewares: [ErrorMiddleware, ResponseMiddleware],
@@ -29,5 +27,6 @@ app.use(
 );
 
 app.listen(7001, () => {
+  createRedis();
   console.log("项目跑在了7001端口");
 });
