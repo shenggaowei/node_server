@@ -15,7 +15,6 @@ export async function setRedis(key, value) {
 }
 
 export async function getRedis(key) {
-  console.log(key);
   const data = await client.get(key);
   return data;
 }
