@@ -7,11 +7,15 @@ export async function createRedis() {
   await client.connect();
 }
 
+// 设置 redis 缓存。缓存有效期 60秒
 export async function setRedis(key, value) {
-  await client.set(key, value);
+  await client.set(key, value, {
+    EX: 60,
+  });
 }
 
 export async function getRedis(key) {
+  console.log(key);
   const data = await client.get(key);
   return data;
 }

@@ -12,5 +12,5 @@ export interface IUser {
 export interface IUserParams extends IUser {
   origin: TOrigin;
   uuid: string;
-  captchaText: string;
+  captcha: string;
 }

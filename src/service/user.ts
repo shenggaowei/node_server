@@ -50,8 +50,14 @@ export default class UserService {
   // 注册逻辑
   public signUp = async (params: userInterface.IUserParams) => {
     const redisCaptcha = await getRedis(params.uuid);
+    // 如果验证码已过期，提示用户重新输入
+    if (!redisCaptcha) {
+      throw new EXCEPTION.Exception(AUTH_MESSAGE.EXPIRED_CAPTCHA);
+    }
     // 如果验证码不正确，直接返回
-    if (redisCaptcha !== params.captchaText) {
+    if (
+      redisCaptcha.toLocaleLowerCase() !== params.captcha.toLocaleLowerCase()
+    ) {
       throw new EXCEPTION.Exception(AUTH_MESSAGE.INCORRECT_CAPTCHA);
     }
     const salt = createSalt();
