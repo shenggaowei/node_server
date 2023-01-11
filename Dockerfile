@@ -1,15 +1,16 @@
 FROM node:14-slim
 
+RUN npm install && \
+    groupadd -r node-user && useradd -r -g node-user node-user && \
+    mkdir /src && \
+    chown -R node-user:node-user /src
+
+USER node-user
+
 COPY . /src
 
 WORKDIR /src
 
-RUN npm install && \
-    groupadd -r node && useradd -r -g node node && \
-    mkdir /src && \
-    chown -R node:node /src
-
-USER node
 
 EXPOSE 7001
 
