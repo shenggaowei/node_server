@@ -1,16 +1,13 @@
 FROM node:14-slim
 
-RUN npm install && \
-    groupadd -r node-user && useradd -r -g node-user node-user && \
-    mkdir /src && \
-    chown -R node-user:node-user /src
+# 如果 package.json 没有变化,则使用 docker 缓存,不进行 npm install
+COPY package.json package-lock.json /src/
 
-USER node-user
+RUN npm install 
 
 COPY . /src
 
 WORKDIR /src
-
 
 EXPOSE 7001
 
