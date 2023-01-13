@@ -11,4 +11,4 @@ COPY . /src
 
 EXPOSE 7001
 
-CMD ["npm", "start"]
+CMD ["npm", "dev"]
