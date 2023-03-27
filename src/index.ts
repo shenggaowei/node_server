@@ -26,7 +26,7 @@ app.use(
   })
 );
 
-app.listen(7001, () => {
+app.listen(7001, "0.0.0.0", () => {
   createRedis();
   console.log("项目跑在了7001端口");
 });
